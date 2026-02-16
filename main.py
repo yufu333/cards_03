@@ -334,8 +334,8 @@ async def draw_once_async():
         # 途中経過（合計点だけ表示）
         p_plus, p_minus, p_total = compute_plus_minus(taken_p)
         c_plus, c_minus, c_total = compute_plus_minus(taken_c)
-        extra = f"{msg}\n（途中経過）あなた 合計 {p_total} / コンピュータ 合計 {c_total}"
-        update_status(extra)
+        # extra = f"{msg}\n（途中経過）あなた 合計 {p_total} / コンピュータ 合計 {c_total}"
+        # update_status(extra)
 
         if round_no >= rounds_total:
             update_status(extra + "\n\n規定回数終了。下のボタンで結果表示へ。")
