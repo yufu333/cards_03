@@ -132,15 +132,21 @@ def show_summary_images():
         sum_img_c.appendChild(img_tag(cards.getUrl(i)))
 
 def render_expr(cards_list):
+    def sort_key(i):
+        suit, rank = card_to_suit_rank(i)
+        return (1 if is_red(suit) else 0, rank)  # 黒先、赤後、同色内は小→大
+
     container = document.createElement("div")
     container.className = "line"
     first = True
-    for i in cards_list:
+
+    for i in sorted(cards_list, key=sort_key):
         color, t = token(i, with_sign=True)
         if not first:
             container.appendChild(document.createTextNode("＋"))
         container.appendChild(span_token(color, t))
         first = False
+
     if len(cards_list) == 0:
         container.innerText = "（なし）"
     return container
